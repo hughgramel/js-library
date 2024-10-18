@@ -1,4 +1,21 @@
-const myLibrary = [];
+/*
+ * Name: Hugh Gramelspacher
+ * Date: October 17, 2024
+ * Section: CSE 154 AE
+ *
+ * This is my JS script for my book library / book tracker website.
+ * It provides functionality for tracking books and their read status, and
+ * adding and removing them. It starts with two books to show the functionality
+ * of the website
+ *
+ * NOTE: This project idea was from the web development course The odin project,
+ * the link shown here to the spec / prompt.
+ * https://www.theodinproject.com/lessons/node-path-javascript-library#project-solution
+ * While I used the idea, it didn't provide any help or tutorials at all. (Just
+ * loose guidelines regarding the goals).
+ */
+
+const MY_LIBRARY = [];
 
 class Book {
     constructor(title, author, pages, read) {
@@ -9,26 +26,28 @@ class Book {
     }
 }
 
-
-function addBookToLibrary() {
-    // this should take new info and add it all to library
-}
-
+/**
+ * Renders all the books in the `MY_LIBRARY` array to the DOM.
+ * Removes any existing book elements and then loops through
+ * the array, creating and displaying each book with  buttons.
+ * Each book has buttons for toggling its read status and removing
+ * it from the library.
+ */
 function displayAllBooks() {
-    // first, remove all books
 
+    // first, remove all books
     const bookContainer = document.querySelector("main > section")
     bookContainer.innerHTML = ""; // removes all divs
 
     // now loop through book array, display each one
-    for (let i = 0; i < myLibrary.length; i++) {
+    for (let i = 0; i < MY_LIBRARY.length; i++) {
 
         // get main container, create book container
         const container = document.querySelector("main > section");
         const childElement = document.createElement("div");
 
         // get current book
-        const currBook = myLibrary[i];
+        const currBook = MY_LIBRARY[i];
 
         // make <p>s for title, author, pages, read
         const titlePara = document.createElement("p");
@@ -48,7 +67,7 @@ function displayAllBooks() {
 
         const toggleReadButton = document.createElement("button");
         toggleReadButton.classList.add("read-button");
-        if (myLibrary[i].read) {
+        if (MY_LIBRARY[i].read) {
             toggleReadButton.classList.add("read");
             toggleReadButton.textContent = "Read";
         } else {
@@ -58,7 +77,7 @@ function displayAllBooks() {
 
         toggleReadButton.addEventListener('click', () => {
             // anonymous function that toggles if it's read or not
-            myLibrary[i].read = !myLibrary[i].read
+            MY_LIBRARY[i].read = !MY_LIBRARY[i].read
             displayAllBooks()
         })
 
@@ -68,11 +87,7 @@ function displayAllBooks() {
         removeButton.classList.add("remove-button");
         removeButton.textContent = "Remove";
         removeButton.addEventListener("click", (event) => {
-            const parentContainer = event.target.parentElement.parentElement;
-            parentContainer.remove;
-            myLibrary.splice(i, 1);
-            // rerun display all books to "rerender"
-            displayAllBooks();
+            removeBook(event, i)
         })
         buttonContainer.appendChild(removeButton);
 
@@ -82,43 +97,51 @@ function displayAllBooks() {
     }
 }
 
-
+/**
+ * Toggles the read status of a book in the MY_LIBRARY array.
+ * @param {number} index - The index of the book in the library array.
+ * Changes the 'read' property and then updates the display of all books.
+ */
 function toggleReadStatus(index) {
-    myLibrary[index].read = !myLibrary[index].read
+    MY_LIBRARY[index].read = !MY_LIBRARY[index].read
     displayAllBooks()
 }
 
-function removeBook(event) {
-    console.log("the target is " + event.target)
+/**
+ * Removes a book from the DOM and from the `MY_LIBRARY` array.
+ * Triggered by the remove button. It removes the book from the array
+ * at the corresponding index and rerenders the updated library.
+ * @param {Event} event - The event object associated with the button click.
+ */
+function removeBook(event, index) {
     const parentContainer = event.target.parentElement.parentElement;
-    console.log("the parent container is " + parentContainer)
     parentContainer.remove;
-    myLibrary.pop()
-    console.log(myLibrary)
-
+    MY_LIBRARY.splice(index, 1);
     // rerun display all books to "rerender"
     displayAllBooks();
 }
 
+/**
+ * Handles form submission, creates a new Book object, adds it to MY_LIBRARY,
+ * and clears the form fields. Then calls `displayAllBooks()` to update the display.
+ */
 function handleForm() {
-    // now we get all of the values from the form
-    // and create the book, then clear everything
-    const titleInput = document.getElementById("title")
-    const authorInput = document.getElementById("author")
-    const pageCount = document.getElementById("pages")
+    const titleInput = document.getElementById("title");
+    const authorInput = document.getElementById("author");
+    const pageCount = document.getElementById("pages");
 
-    // now create new book
-    myLibrary.push(new Book(titleInput.value, authorInput.value, pageCount.value, false))
+    // Create new book and add it to the library
+    MY_LIBRARY.push(new Book(titleInput.value, authorInput.value, pageCount.value, false));
 
-    // now make all nothing
-    titleInput.value = ""
-    authorInput.value = ""
-    pageCount.value = ""
+    // Clear form inputs
+    titleInput.value = "";
+    authorInput.value = "";
+    pageCount.value = "";
 
-    //"rerender"
-    displayAllBooks()
+    // Rerender the updated book list
+    displayAllBooks();
 }
 
-myLibrary.push(new Book("The Hobbit", "J.R.R. Tolkien", 123, true));
-myLibrary.push(new Book("A Game of Thrones ", "George R.R. Martin ", 547, false));
+MY_LIBRARY.push(new Book("The Hobbit", "J.R.R. Tolkien", 123, true));
+MY_LIBRARY.push(new Book("A Game of Thrones ", "George R.R. Martin ", 547, false));
 displayAllBooks();

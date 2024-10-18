@@ -1,3 +1,17 @@
+/*
+ * Name: Hugh Gramelspacher
+ * Date: October 17, 2024
+ * Section: CSE 154 AE
+ *
+ * This is my styles css file for my book library / book tracker website. It
+ * provides styling for the various HTML elements on the index.html page.
+ *
+ * NOTE: This project idea was from the web development course The odin project,
+ * the link shown here to the spec / prompt. ("https://www.theodinproject.com/lessons/node-path-javascript-library#project-solution")
+ * While I used the idea, it didn't provide any help or tutorials at all. (Just
+ * loose guidelines regarding the goals).
+ */
+
 * {
     font-family: "Domine", serif;
 }
@@ -67,7 +81,6 @@ main > section > div div {
 
 button {
     flex-basis: 50%;
-    /* background-color: #0A66C2; */
     font-weight: 500;
     color: rgb(255, 255, 255);
     border: 0;
