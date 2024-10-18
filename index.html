@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libby.io</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link
+    href="https://fonts.googleapis.com/css2?family=Domine:wght@400..700&display=swap" 
+    rel="stylesheet">
+</head>
+<body>
+  <main>
+    <header>
+      <span>
+        Libby.io
+      </span>
+      <aside>
+        <form action="javascript:handleForm()">
+          <section>
+            Title: 
+            <input type="text" required id="title">
+          </section>
+          <section>
+            Author:
+            <input type="text" required id="author">
+          </section>
+          <section>
+            Pages: 
+            <input type="number" required min="1" max="99999"id="pages">
+          </section>
+          <button>Add book</button>
+        </form>
+      </aside>
+    </header>
+    <section>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

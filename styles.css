@@ -1,0 +1,107 @@
+* {
+    font-family: "Domine", serif;
+}
+
+body {
+    background-color: #f0decf;
+    margin:0px;
+    overflow: hidden;
+}
+
+span {
+    flex-basis: 40%;
+    width: 100%;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    margin: 10px;
+    flex: 0 0 10%;
+    font-size: 3em;
+    font-weight: 500;
+    background-color: #c1afa8;
+    align-items: center;
+    padding: 5px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: row;
+}
+
+main > section {
+    margin: 0 10px 10px 10px;
+    flex-grow: 1;
+    background-color: #81c8ee;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 200px);
+    grid-template-rows: repeat(auto-fit, 200px);
+    gap: 10px;
+    padding: 10px;
+    border-radius: 25px;
+}
+
+main > section > div {
+    background-color: #f4f4f4;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    height: 90%;
+}
+
+main > section > div p {
+    flex-grow: 1;
+}
+
+main > section > div div {
+    flex-basis: 30%;
+    gap: 5px;
+    padding: 3px;
+    display: flex;
+    flex-direction: row;
+}
+
+button {
+    flex-basis: 50%;
+    /* background-color: #0A66C2; */
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+    border: 0;
+    border-radius: 100px;
+}
+
+.read, aside > form > button {
+    background-color: #306844;
+}
+
+.unread {
+    background-color: #950606;
+}
+
+button:hover { 
+    filter: brightness(85%);
+}
+
+.remove-button {
+    background-color: #c1afa8;
+    flex-grow: 1;
+}
+
+input {
+    width: 95%;
+}
+
+form {
+    flex-grow: 1;
+    background-color: #f4f4f4;
+    border-radius: 25px;
+    padding: 10px;
+    font-size: 25px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px
+}
